@@ -1,4 +1,4 @@
-﻿[
+[
   {
     "id": 1,
     "brigade": "Название1",
@@ -16,5 +16,11 @@
     "brigade": "Название3",
     "schedule": "15.00-18.00",
     "area": "Помещение3"
+  },
+  {
+    "id": 1705778472068,
+    "area": "default",
+    "brigade": "default",
+    "schedule": "default"
   }
 ]

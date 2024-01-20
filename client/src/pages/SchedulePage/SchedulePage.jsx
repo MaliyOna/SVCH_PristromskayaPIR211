@@ -3,35 +3,37 @@ import './SchedulePage.scss';
 import { PageHead } from '../../shared/components/PageHead/PageHead';
 import { Content } from '../../shared/components/Content/Content';
 import { Footer } from '../../shared/components/Footer/Footer';
-import jsonData from '../../shared/data/data.json';
 import { ScheduleBlock } from '../../shared/components/ScheduleBlock/ScheduleBlock';
 import { EditPopup } from '../../shared/components/EditPopup/EditPopup';
 import { ButtonColor } from '../../shared/components/Button/Button';
 import ActiveLastBreadcrumb from '../../shared/components/ActiveLastBreadcrumb/ActiveLastBreadcrumb';
-import { setJsonData } from '../../shared/data/actions';
-import { useSelector, useDispatch } from 'react-redux';
+import { create, getAll } from '../../shared/api/allApi';
 
 export function SchedulePage() {
+  const [data, setData] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [targetElement, setTargetElement] = useState([]);
 
-  const dispatch = useDispatch();
-  const data = useSelector((state) => state.jsonData);
-
   useEffect(() => {
-    dispatch(setJsonData(jsonData));
-  }, [dispatch]);
+    loadData();
+  }, [])
+
+  async function loadData() {
+    const data = await getAll();
+    setData(data);
+  }
 
   function openPopup(element) {
     setTargetElement(element);
     setShowPopup(true);
   }
 
-  function closePopup() {
+  async function closePopup() {
     setShowPopup(false);
+    await loadData();
   }
 
-  function addNewElement() {
+  async function addNewElement() {
     const targetElement = {
       id: 4,
       area: "default",
@@ -40,6 +42,10 @@ export function SchedulePage() {
     }
 
     setTargetElement(targetElement);
+
+    await create(targetElement);
+
+    await loadData()
     setShowPopup(true);
   }
 
@@ -50,7 +56,7 @@ export function SchedulePage() {
         <ActiveLastBreadcrumb targetPage="График" />
         <div className='schedulePage__title'>График</div>
 
-        {data.jsonData && data.jsonData.map(element =>
+        {data && data.map(element =>
           <ScheduleBlock key={element.id} schedule={element.schedule} brigade={element.brigade} onClick={() => openPopup(element)} />
         )}
 

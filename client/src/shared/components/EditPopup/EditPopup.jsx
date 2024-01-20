@@ -3,8 +3,9 @@ import { PopupWindow } from '../PopupWindow/PopupWindow';
 import './EditPopup.scss';
 import { Input } from '../Input/Input';
 
-import jsonData from '../../data/data.json';
 import { ButtonsGroup } from '../ButtonsGroup/ButtonsGroup';
+import { deleteElement, getAll, update } from '../../api/allApi';
+import { element } from 'prop-types';
 
 export function EditPopup(props) {
   const [area, setArea] = useState();
@@ -27,9 +28,7 @@ export function EditPopup(props) {
       area: area
     };
 
-    const data = await jsonData.filter(element => element.id != props.element.id);
-    data.push(newElement);
-    console.log(data);
+    await update(newElement);
     closeElement();
   }
 
@@ -37,9 +36,9 @@ export function EditPopup(props) {
     props.closePopup();
   }
 
-  async function deleteElement() {
-    const data = await jsonData.filter(element => element.id != props.element.id);
-    console.log(data);
+  async function deleteOneElement() {
+    console.log(props.element.id)
+    await deleteElement(props.element.id);
     closeElement();
   }
 
@@ -52,19 +51,19 @@ export function EditPopup(props) {
           </div>
 
           <div className='editPopup__content__area'>
-            {area && <Input title="Площать" value={area} onChange={(event) => setArea(event.target.value)} />}
+            {area && <Input title="Площать" value={area} onChange={(value) => setArea(value)} />}
           </div>
 
           <div className='editPopup__content__brigade'>
-            {brigade && <Input title="Бригада" value={brigade} onChange={(event) => setBrigade(event.target.value)} />}
+            {brigade && <Input title="Бригада" value={brigade} onChange={(value) => setBrigade(value)} />}
           </div>
 
           <div className='editPopup__content__schedule'>
-            {schedule && <Input title="Расписание" value={schedule} onChange={(event) => setSchedule(event.target.value)} />}
+            {schedule && <Input title="Расписание" value={schedule} onChange={(value) => setSchedule(value)} />}
           </div>
 
           <div className='editPopup__content__buttons'>
-            <ButtonsGroup save={saveElement} close={closeElement} delete={deleteElement}/>
+            <ButtonsGroup save={saveElement} close={closeElement} delete={deleteOneElement}/>
           </div>
         </div>
       </PopupWindow>

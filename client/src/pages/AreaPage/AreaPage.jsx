@@ -8,41 +8,61 @@ import { EditPopup } from '../../shared/components/EditPopup/EditPopup';
 import { ButtonColor } from '../../shared/components/Button/Button';
 import SimpleSnackbar from '../../shared/components/SimpleSnackbar/SimpleSnackbar';
 import ActiveLastBreadcrumb from '../../shared/components/ActiveLastBreadcrumb/ActiveLastBreadcrumb';
-import { setJsonData } from '../../shared/data/actions';
-import jsonData from '../../shared/data/data.json';
-import { useDispatch, useSelector } from 'react-redux';
+import { create, getAll } from '../../shared/api/allApi';
 
 export function AreaPage() {
+  const [data, setData] = useState();
+  const [showPopup, setShowPopup] = useState(false);
   const [targetElement, setTargetElement] = useState([]);
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
-
-  const dispatch = useDispatch();
-  const localData = useSelector((state) => state.jsonData);
 
   useEffect(() => {
-    dispatch(setJsonData(jsonData));
-  }, []);
+    loadData();
+  }, [])
+
+  async function loadData() {
+    const data = await getAll();
+    setData(data);
+  }
 
   function openPopup(element) {
     setTargetElement(element);
     setShowPopup(true);
   }
 
-  function closePopup() {
+  async function closePopup() {
     setShowPopup(false);
+    await loadData();
   }
 
-  function addNewElement() {
+  async function addNewElement() {
     const targetElement = {
       id: 4,
       area: "default",
       brigade: "default",
       schedule: "default"
-    };
+    }
 
     setTargetElement(targetElement);
+
+    await create(targetElement);
+
+    await loadData()
+    setShowPopup(true);
     setOpenSnackbar(true);
+  }
+
+  function createDocument() {
+    const jsonData = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonData], { type: 'application/json' });
+
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = 'data.json';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   return (
@@ -52,12 +72,15 @@ export function AreaPage() {
         <ActiveLastBreadcrumb targetPage="Площади"/>
         <div className='areaPage__title'>Помещение и бригада</div>
         {
-          localData.jsonData && localData.jsonData.map(element =>
+          data != undefined && data.map(element =>
             <AreaBlock key={element.id} element={element} onClick={() => openPopup(element)} />
           )
         }
 
-        <ButtonColor value="Добавить" handleClick={() => addNewElement()}/>
+          <ButtonColor value="Добавить" handleClick={() => addNewElement()}/>
+        <div className='areaPage__save__button'>
+          <ButtonColor value="Скачать" handleClick={() => createDocument()}/>
+        </div>
       </Content>
 
       <EditPopup open={showPopup} element={targetElement} closePopup={() => closePopup()}/>
@@ -66,4 +89,3 @@ export function AreaPage() {
     </>
   );
 }
-

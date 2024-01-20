@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "brigade": "Название1",
+    "schedule": "9.00-12.00",
+    "area": "Помещение1"
+  },
+  {
+    "id": 2,
+    "brigade": "Название2",
+    "schedule": "12.00-15.00",
+    "area": "Помещение2"
+  },
+  {
+    "id": 3,
+    "brigade": "Название3",
+    "schedule": "15.00-18.00",
+    "area": "Помещение3"
+  },
+  {
+    "id": 1705778472068,
+    "area": "default",
+    "brigade": "default",
+    "schedule": "default"
+  }
+]
