@@ -40,13 +40,13 @@ export function SchedulePage() {
       brigade: "default",
       schedule: "default"
     }
+    
+    const data = await create(targetElement);
+    console.log(data);
+    // setTargetElement(data);
 
-    setTargetElement(targetElement);
-
-    await create(targetElement);
-
-    await loadData()
-    setShowPopup(true);
+    // await loadData()
+    // setShowPopup(true);
   }
 
   return (
@@ -57,7 +57,7 @@ export function SchedulePage() {
         <div className='schedulePage__title'>График</div>
 
         {data && data.map(element =>
-          <ScheduleBlock key={element.id} schedule={element.schedule} brigade={element.brigade} onClick={() => openPopup(element)} />
+          <ScheduleBlock key={element._id} schedule={element.schedule.title} brigade={element.title} onClick={() => openPopup(element)} />
         )}
 
         <ButtonColor value="Добавить" handleClick={() => addNewElement()} />

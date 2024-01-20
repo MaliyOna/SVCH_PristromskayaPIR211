@@ -11,7 +11,7 @@ import ActiveLastBreadcrumb from '../../shared/components/ActiveLastBreadcrumb/A
 import { create, getAll } from '../../shared/api/allApi';
 
 export function AreaPage() {
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [targetElement, setTargetElement] = useState([]);
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -22,6 +22,7 @@ export function AreaPage() {
 
   async function loadData() {
     const data = await getAll();
+    console.log(data);
     setData(data);
   }
 
@@ -43,9 +44,8 @@ export function AreaPage() {
       schedule: "default"
     }
 
-    setTargetElement(targetElement);
-
-    await create(targetElement);
+    const data = await create(targetElement);
+    setTargetElement(data.brigade);
 
     await loadData()
     setShowPopup(true);
@@ -69,22 +69,22 @@ export function AreaPage() {
     <>
       <PageHead />
       <Content>
-        <ActiveLastBreadcrumb targetPage="Площади"/>
+        <ActiveLastBreadcrumb targetPage="Площади" />
         <div className='areaPage__title'>Помещение и бригада</div>
         {
-          data != undefined && data.map(element =>
-            <AreaBlock key={element.id} element={element} onClick={() => openPopup(element)} />
+          data && data.map(element =>
+            <AreaBlock key={element._id} area={element.area.title} brigade={element.title} onClick={() => openPopup(element)} />
           )
         }
 
-          <ButtonColor value="Добавить" handleClick={() => addNewElement()}/>
+        <ButtonColor value="Добавить" handleClick={() => addNewElement()} />
         <div className='areaPage__save__button'>
-          <ButtonColor value="Скачать" handleClick={() => createDocument()}/>
+          <ButtonColor value="Скачать" handleClick={() => createDocument()} />
         </div>
       </Content>
 
-      <EditPopup open={showPopup} element={targetElement} closePopup={() => closePopup()}/>
-      <SimpleSnackbar open={openSnackbar} setOpen={() => setOpenSnackbar(false)} text="Элемент добавлен"/>
+      <EditPopup open={showPopup} element={targetElement} closePopup={() => closePopup()} />
+      <SimpleSnackbar open={openSnackbar} setOpen={() => setOpenSnackbar(false)} text="Элемент добавлен" />
       <Footer />
     </>
   );

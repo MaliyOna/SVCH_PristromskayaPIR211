@@ -8,7 +8,7 @@ export async function getAll() {
 
 export async function create(element) {
   const response = await api.post(`/all`, {element: element});
-  return response.data.data;
+  return response.data;
 }
 
 export async function update(element) {

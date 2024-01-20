@@ -4,8 +4,7 @@ import './EditPopup.scss';
 import { Input } from '../Input/Input';
 
 import { ButtonsGroup } from '../ButtonsGroup/ButtonsGroup';
-import { deleteElement, getAll, update } from '../../api/allApi';
-import { element } from 'prop-types';
+import { deleteElement, update } from '../../api/allApi';
 
 export function EditPopup(props) {
   const [area, setArea] = useState();
@@ -14,18 +13,25 @@ export function EditPopup(props) {
 
   useEffect(() => {
     if (props.element) {
-      setArea(props.element.area);
-      setBrigade(props.element.brigade);
-      setSchedule(props.element.schedule)
+      console.log(props.element);
+      setArea(props.element.area ? props.element.area.title : " ");
+      setBrigade(props.element.title || " ");
+      setSchedule(props.element.schedule ? props.element.schedule.title : " ");
     }
-  }, [props.element])
+  }, [props.element]);  
 
   async function saveElement() {
     const newElement = {
-      id: props.element.id,
-      brigade: brigade,
-      schedule: schedule,
-      area: area
+      _id: props.element._id,
+      title: brigade,
+      schedule: {
+        _id: props.element.schedule._id,
+        title: schedule
+      },
+      area: {
+        _id: props.element.area._id,
+        title: area
+      }
     };
 
     await update(newElement);
@@ -37,8 +43,7 @@ export function EditPopup(props) {
   }
 
   async function deleteOneElement() {
-    console.log(props.element.id)
-    await deleteElement(props.element.id);
+    await deleteElement(props.element._id);
     closeElement();
   }
 

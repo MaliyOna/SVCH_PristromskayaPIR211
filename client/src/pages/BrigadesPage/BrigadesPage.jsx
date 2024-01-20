@@ -57,7 +57,7 @@ export function BrigadesPage() {
         <div className='brigadesPage__title'>Бригады</div>
 
         {data && data.map(element =>
-          <BrigadeBlock key={element.id} brigade={element.brigade} onClick={() => openPopup(element)} />
+          <BrigadeBlock key={element._id} brigade={element.title} onClick={() => openPopup(element)} />
         )}
 
         <ButtonColor value="Добавить" handleClick={() => addNewElement()} />
