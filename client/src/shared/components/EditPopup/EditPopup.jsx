@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { PopupWindow } from '../PopupWindow/PopupWindow';
 import './EditPopup.scss';
 import { Input } from '../Input/Input';
-import { ButtonColor } from '../Button/Button';
 
 import jsonData from '../../data/data.json';
 import { ButtonsGroup } from '../ButtonsGroup/ButtonsGroup';

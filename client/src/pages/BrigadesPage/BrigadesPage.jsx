@@ -8,19 +8,19 @@ import { BrigadeBlock } from '../../shared/components/BrigadeBlock/BrigadeBlock'
 import { ButtonColor } from '../../shared/components/Button/Button';
 import { EditPopup } from '../../shared/components/EditPopup/EditPopup';
 import ActiveLastBreadcrumb from '../../shared/components/ActiveLastBreadcrumb/ActiveLastBreadcrumb';
+import { setJsonData } from '../../shared/data/actions';
+import { useSelector, useDispatch } from 'react-redux';
 
 export function BrigadesPage() {
-  const [data, setData] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [targetElement, setTargetElement] = useState([]);
 
-  useEffect(() => {
-    loadData();
-  }, [])
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.jsonData);
 
-  async function loadData() {
-    setData(jsonData);
-  }
+  useEffect(() => {
+    dispatch(setJsonData(jsonData));
+  }, [dispatch]);
 
   function openPopup(element) {
     setTargetElement(element);
@@ -40,9 +40,6 @@ export function BrigadesPage() {
     }
 
     setTargetElement(targetElement);
-
-    data.push(targetElement);
-    console.log(data);
     setShowPopup(true);
   }
 
@@ -53,7 +50,7 @@ export function BrigadesPage() {
         <ActiveLastBreadcrumb targetPage="Бригады" />
         <div className='brigadesPage__title'>Бригады</div>
 
-        {data && data.map(element =>
+        {data.jsonData && data.jsonData.map(element =>
           <BrigadeBlock key={element.id} brigade={element.brigade} onClick={() => openPopup(element)} />
         )}
 

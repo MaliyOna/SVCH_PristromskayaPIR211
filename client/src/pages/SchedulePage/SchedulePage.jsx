@@ -8,19 +8,19 @@ import { ScheduleBlock } from '../../shared/components/ScheduleBlock/ScheduleBlo
 import { EditPopup } from '../../shared/components/EditPopup/EditPopup';
 import { ButtonColor } from '../../shared/components/Button/Button';
 import ActiveLastBreadcrumb from '../../shared/components/ActiveLastBreadcrumb/ActiveLastBreadcrumb';
+import { setJsonData } from '../../shared/data/actions';
+import { useSelector, useDispatch } from 'react-redux';
 
 export function SchedulePage() {
-  const [data, setData] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [targetElement, setTargetElement] = useState([]);
 
-  useEffect(() => {
-    loadData();
-  }, [])
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.jsonData);
 
-  async function loadData() {
-    setData(jsonData);
-  }
+  useEffect(() => {
+    dispatch(setJsonData(jsonData));
+  }, [dispatch]);
 
   function openPopup(element) {
     setTargetElement(element);
@@ -40,9 +40,6 @@ export function SchedulePage() {
     }
 
     setTargetElement(targetElement);
-
-    data.push(targetElement);
-    console.log(data);
     setShowPopup(true);
   }
 
@@ -53,7 +50,7 @@ export function SchedulePage() {
         <ActiveLastBreadcrumb targetPage="График" />
         <div className='schedulePage__title'>График</div>
 
-        {data && data.map(element =>
+        {data.jsonData && data.jsonData.map(element =>
           <ScheduleBlock key={element.id} schedule={element.schedule} brigade={element.brigade} onClick={() => openPopup(element)} />
         )}
 

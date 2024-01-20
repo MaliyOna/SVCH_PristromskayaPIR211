@@ -2,27 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { PageHead } from '../../shared/components/PageHead/PageHead';
 import { Footer } from '../../shared/components/Footer/Footer';
 import { Content } from '../../shared/components/Content/Content';
-import jsonData from '../../shared/data/data.json';
 import { AreaBlock } from '../../shared/components/AreaBlock/AreaBlock';
 import './AreaPage.scss';
 import { EditPopup } from '../../shared/components/EditPopup/EditPopup';
 import { ButtonColor } from '../../shared/components/Button/Button';
 import SimpleSnackbar from '../../shared/components/SimpleSnackbar/SimpleSnackbar';
 import ActiveLastBreadcrumb from '../../shared/components/ActiveLastBreadcrumb/ActiveLastBreadcrumb';
+import { setJsonData } from '../../shared/data/actions';
+import jsonData from '../../shared/data/data.json';
+import { useDispatch, useSelector } from 'react-redux';
 
 export function AreaPage() {
-  const [data, setData] = useState();
-  const [showPopup, setShowPopup] = useState(false);
   const [targetElement, setTargetElement] = useState([]);
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+
+  const dispatch = useDispatch();
+  const localData = useSelector((state) => state.jsonData);
 
   useEffect(() => {
-    loadData();
-  }, [])
-
-  async function loadData() {
-    setData(jsonData);
-  }
+    dispatch(setJsonData(jsonData));
+  }, []);
 
   function openPopup(element) {
     setTargetElement(element);
@@ -39,13 +39,9 @@ export function AreaPage() {
       area: "default",
       brigade: "default",
       schedule: "default"
-    }
+    };
 
     setTargetElement(targetElement);
-
-    data.push(targetElement);
-    console.log(data);
-    setShowPopup(true);
     setOpenSnackbar(true);
   }
 
@@ -56,7 +52,7 @@ export function AreaPage() {
         <ActiveLastBreadcrumb targetPage="Площади"/>
         <div className='areaPage__title'>Помещение и бригада</div>
         {
-          data && data.map(element =>
+          localData.jsonData && localData.jsonData.map(element =>
             <AreaBlock key={element.id} element={element} onClick={() => openPopup(element)} />
           )
         }
@@ -70,3 +66,4 @@ export function AreaPage() {
     </>
   );
 }
+
