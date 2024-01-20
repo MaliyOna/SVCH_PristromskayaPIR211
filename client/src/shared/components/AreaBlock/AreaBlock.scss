@@ -1,0 +1,23 @@
+.areaBlock {
+  box-shadow: 0 .2vw 1vw 0 rgba(0,0,0,0.16);
+  height: 3vw;
+  margin-bottom: 1vw;
+  display: flex;
+  flex-direction: row;
+  font-size: 1vw;
+}
+
+.areaBlock__area, .areaBlock__brigade {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.areaBlock__area {
+  margin-left: .5vw;
+  margin-right: auto;
+}
+
+.areaBlock__brigade {
+  margin-right: .5vw;
+  margin-left: auto;
+}
