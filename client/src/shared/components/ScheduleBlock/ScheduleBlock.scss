@@ -1,0 +1,23 @@
+.scheduleBlock {
+  box-shadow: 0 .2vw 1vw 0 rgba(0,0,0,0.16);
+  height: 3vw;
+  margin-bottom: 1vw;
+  display: flex;
+  flex-direction: row;
+  font-size: 1vw;
+}
+
+.scheduleBlock__schedule, .scheduleBlock__brigade {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.scheduleBlock__brigade{
+  margin-left: .5vw;
+  margin-right: auto;
+}
+
+.scheduleBlock__schedule {
+  margin-right: .5vw;
+  margin-left: auto;
+}
