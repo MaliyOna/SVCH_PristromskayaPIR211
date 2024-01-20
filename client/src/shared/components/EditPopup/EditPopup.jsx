@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { PopupWindow } from '../PopupWindow/PopupWindow';
 import './EditPopup.scss';
 import { Input } from '../Input/Input';
-import { Button } from '../Button/Button';
+import { ButtonColor } from '../Button/Button';
 
 import jsonData from '../../data/data.json';
+import { ButtonsGroup } from '../ButtonsGroup/ButtonsGroup';
 
 export function EditPopup(props) {
   const [area, setArea] = useState();
@@ -64,14 +65,7 @@ export function EditPopup(props) {
           </div>
 
           <div className='editPopup__content__buttons'>
-            <div className='editPopup__content__buttons__work'>
-              <Button value="Сохранить" onClick={saveElement} />
-              <Button value="Отмена" onClick={closeElement} color="red" />
-            </div>
-
-            <div className='editPopup__content__buttons__delete'>
-              <Button value="Удалить" onClick={deleteElement} color="red" />
-            </div>
+            <ButtonsGroup save={saveElement} close={closeElement} delete={deleteElement}/>
           </div>
         </div>
       </PopupWindow>

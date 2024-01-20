@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './SchedulePage.scss';
 import { PageHead } from '../../shared/components/PageHead/PageHead';
-import { Menu } from '../../shared/components/Menu/Menu';
 import { Content } from '../../shared/components/Content/Content';
 import { Footer } from '../../shared/components/Footer/Footer';
 import jsonData from '../../shared/data/data.json';
 import { ScheduleBlock } from '../../shared/components/ScheduleBlock/ScheduleBlock';
 import { EditPopup } from '../../shared/components/EditPopup/EditPopup';
-import { Button } from '../../shared/components/Button/Button';
+import { ButtonColor } from '../../shared/components/Button/Button';
+import ActiveLastBreadcrumb from '../../shared/components/ActiveLastBreadcrumb/ActiveLastBreadcrumb';
 
 export function SchedulePage() {
   const [data, setData] = useState();
@@ -49,15 +49,15 @@ export function SchedulePage() {
   return (
     <>
       <PageHead />
-      <Menu />
       <Content>
+        <ActiveLastBreadcrumb targetPage="График" />
         <div className='schedulePage__title'>График</div>
 
         {data && data.map(element =>
           <ScheduleBlock key={element.id} schedule={element.schedule} brigade={element.brigade} onClick={() => openPopup(element)} />
         )}
 
-        <Button value="Добавить" onClick={() => addNewElement()} />
+        <ButtonColor value="Добавить" handleClick={() => addNewElement()} />
       </Content>
 
       <EditPopup open={showPopup} element={targetElement} closePopup={() => closePopup()} />

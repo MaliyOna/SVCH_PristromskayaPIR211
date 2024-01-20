@@ -40,29 +40,16 @@
 
 .editPopup {
   .popupWindow {
-    height: 30vw;
+    height: 18vw;
     width: 25vw;
     margin-top: 15vw;
     box-shadow: 0 .2vw 1vw 0 rgba(0,0,0,0.16);
     background-color: white;
   }
 
-  .button-red {
-    margin-left: 1vw;
+  .editPopup__content__buttons{
+    margin-top: 2vw;
   }
-
-  .editPopup__content__buttons {
-    width: 100%;
-  }
-
-  .editPopup__content__buttons__delete {
-    margin-top: 1vw;
-
-    .button-red{
-      margin-left: 0 !important;
-    }
-  }
-
 }
 
 .editPopup__content__title {

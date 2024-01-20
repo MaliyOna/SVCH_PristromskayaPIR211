@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { PageHead } from '../../shared/components/PageHead/PageHead';
 import { Footer } from '../../shared/components/Footer/Footer';
 import { Content } from '../../shared/components/Content/Content';
-import { Menu } from '../../shared/components/Menu/Menu';
 import jsonData from '../../shared/data/data.json';
 import { AreaBlock } from '../../shared/components/AreaBlock/AreaBlock';
 import './AreaPage.scss';
 import { EditPopup } from '../../shared/components/EditPopup/EditPopup';
-import { Button } from '../../shared/components/Button/Button';
+import { ButtonColor } from '../../shared/components/Button/Button';
+import SimpleSnackbar from '../../shared/components/SimpleSnackbar/SimpleSnackbar';
+import ActiveLastBreadcrumb from '../../shared/components/ActiveLastBreadcrumb/ActiveLastBreadcrumb';
 
 export function AreaPage() {
   const [data, setData] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [targetElement, setTargetElement] = useState([]);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   useEffect(() => {
     loadData();
@@ -44,13 +46,14 @@ export function AreaPage() {
     data.push(targetElement);
     console.log(data);
     setShowPopup(true);
+    setOpenSnackbar(true);
   }
 
   return (
     <>
       <PageHead />
-      <Menu />
       <Content>
+        <ActiveLastBreadcrumb targetPage="Площади"/>
         <div className='areaPage__title'>Помещение и бригада</div>
         {
           data && data.map(element =>
@@ -58,10 +61,11 @@ export function AreaPage() {
           )
         }
 
-        <Button value="Добавить" onClick={() => addNewElement()}/>
+        <ButtonColor value="Добавить" handleClick={() => addNewElement()}/>
       </Content>
 
       <EditPopup open={showPopup} element={targetElement} closePopup={() => closePopup()}/>
+      <SimpleSnackbar open={openSnackbar} setOpen={() => setOpenSnackbar(false)} text="Элемент добавлен"/>
       <Footer />
     </>
   );

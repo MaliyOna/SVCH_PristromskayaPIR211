@@ -1,30 +1,21 @@
-import React from 'react';
-import './Button.scss';
+import * as React from 'react';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
-export function Button(props) {
-  function handleClick() {
-    if (props.onClick) {
-      props.onClick();
-    }
-  }
-
-  function getButtonColorClassName() {
-    switch (props.color) {
-      case "red":
-        return "button-red";
-      case "dark":
-        return "button-dark";
-      default:
-        return "button-dark";
-    }
-  }
-
+export function ButtonColor(props) {
   return (
-    <button
-      className={`button ${getButtonColorClassName()}`}
-      type="button"
-      onClick={handleClick}>
-      {props.value}
-    </button>
-  )
+    <Stack direction="row" spacing={2}>
+      {
+        !props.error
+          ?
+          <Button variant="contained" onClick={() => props.handleClick()}>
+            {props.value}
+          </Button>
+          :
+          <Button variant="outlined" color="error" onClick={() => props.handleClick()}>
+            {props.value}
+          </Button>
+      }
+    </Stack>
+  );
 }
