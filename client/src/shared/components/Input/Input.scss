@@ -1,0 +1,13 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5vw;
+}
+
+.input__input {
+  margin-top: .5vw;
+  line-height: 2vw;
+  width: 15vw;
+  margin-bottom: 1vw;
+  font-size: 1.5vw
+}
