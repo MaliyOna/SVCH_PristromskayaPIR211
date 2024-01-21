@@ -1,12 +1,43 @@
-@media (max-width: 680px) {
+@media (max-width: 1066px) {
   .editPopup{
       .popupWindow{
-        height: 31vw !important;
+        height: 20vw !important;
       }
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 740px) {
+  .editPopup{
+      .popupWindow{
+        height: 23vw !important;
+      }
+  }
+}
+
+@media (max-width: 496px) {
+  .editPopup{
+      .popupWindow{
+        height: 25vw !important;
+      }
+  }
+}
+@media (max-width: 470px) {
+  .editPopup{
+      .popupWindow{
+        height: 28vw !important;
+      }
+  }
+}
+
+@media (max-width: 429px) {
+  .editPopup{
+      .popupWindow{
+        height: 30vw !important;
+      }
+  }
+}
+
+@media (max-width: 371px) {
   .editPopup{
       .popupWindow{
         height: 32vw !important;
@@ -14,34 +45,18 @@
   }
 }
 
-@media (max-width: 530px) {
+@media (max-width: 335px) {
   .editPopup{
       .popupWindow{
-        height: 36vw !important;
-      }
-  }
-}
-
-@media (max-width: 475x) {
-  .editPopup{
-      .popupWindow{
-        height: 36vw !important;
-      }
-  }
-}
-
-@media (max-width: 364x) {
-  .editPopup{
-      .popupWindow{
-        height: 42vw !important;
+        height: 34vw !important;
       }
   }
 }
 
 .editPopup {
   .popupWindow {
-    height: 18vw;
-    width: 25vw;
+    height: 20vw;
+    width: 27vw;
     margin-top: 15vw;
     box-shadow: 0 .2vw 1vw 0 rgba(0,0,0,0.16);
     background-color: white;
@@ -59,4 +74,27 @@
 
 .editPopup__content {
   margin: 1vw;
+}
+
+@media (max-width: 470px) {
+  .editPopup__content__buttons {
+    .css-1d9bq45-MuiButtonGroup-root{
+      display: flex;
+      flex-direction: column;
+      box-shadow: none;
+    }
+
+    .css-sghohy-MuiButtonBase-root-MuiButton-root{
+      border: none !important;
+      border-radius: 0 !important;
+    }
+  }
+}
+
+.editPopup__content__buttons {
+  .css-sghohy-MuiButtonBase-root-MuiButton-root {
+    width: 5.5vw;
+    height: 1.7vw;
+    font-size: .7vw;
+  }
 }
