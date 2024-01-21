@@ -4,8 +4,7 @@ import './EditPopup.scss';
 import { Input } from '../Input/Input';
 
 import { ButtonsGroup } from '../ButtonsGroup/ButtonsGroup';
-import { deleteElement, getAll, update } from '../../api/allApi';
-import { element } from 'prop-types';
+import { deleteElement, update } from '../../api/allApi';
 
 export function EditPopup(props) {
   const [area, setArea] = useState();
