@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { PopupWindow } from '../PopupWindow/PopupWindow';
 import './EditPopup.scss';
 import { Input } from '../Input/Input';
-import { ButtonColor } from '../Button/Button';
 
 import jsonData from '../../data/data.json';
 import { ButtonsGroup } from '../ButtonsGroup/ButtonsGroup';
@@ -53,15 +52,15 @@ export function EditPopup(props) {
           </div>
 
           <div className='editPopup__content__area'>
-            {area && <Input title="Площать" value={area} onChange={(event) => setArea(event.target.value)} />}
+            {area && <Input title="Площать" value={area} onChange={(value) => setArea(value)} />}
           </div>
 
           <div className='editPopup__content__brigade'>
-            {brigade && <Input title="Бригада" value={brigade} onChange={(event) => setBrigade(event.target.value)} />}
+            {brigade && <Input title="Бригада" value={brigade} onChange={(value) => setBrigade(value)} />}
           </div>
 
           <div className='editPopup__content__schedule'>
-            {schedule && <Input title="Расписание" value={schedule} onChange={(event) => setSchedule(event.target.value)} />}
+            {schedule && <Input title="Расписание" value={schedule} onChange={(value) => setSchedule(value)} />}
           </div>
 
           <div className='editPopup__content__buttons'>
