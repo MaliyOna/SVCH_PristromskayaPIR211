@@ -10,6 +10,9 @@ import SimpleSnackbar from '../../shared/components/SimpleSnackbar/SimpleSnackba
 import ActiveLastBreadcrumb from '../../shared/components/ActiveLastBreadcrumb/ActiveLastBreadcrumb';
 import { create, getAll } from '../../shared/api/allApi';
 import toast from 'react-hot-toast';
+import 'blob-polyfill';
+import * as XLSX from 'xlsx';
+import jsPDF from 'jspdf'
 
 export function AreaPage() {
   const [data, setData] = useState([]);
@@ -27,6 +30,7 @@ export function AreaPage() {
     try {
       const data = await getAll();
       setData(data);
+      console.log(data);
     } catch (error) {
       toast.error("Ошибка сервера")
     }
@@ -76,6 +80,66 @@ export function AreaPage() {
     document.body.removeChild(link);
   }
 
+  function createDocumentExcel() {
+    const transformedData = data.map(element => ({
+      brigade: element.title,
+      area: element.area.title,
+      schedule: element.schedule.title,
+    }));
+
+    const ws = XLSX.utils.json_to_sheet(transformedData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLSX.writeFile(wb, 'data.xlsx');
+  }
+
+  function createDocumentWord() {
+    const transformedData = data.map(element => ({
+      brigade: element.title,
+      area: element.area.title,
+      schedule: element.schedule.title,
+    }));
+  
+    const tableRows = transformedData.map(row => [
+      row.brigade,
+      row.area,
+      row.schedule,
+    ]);
+  
+    const table = [
+      ['Brigade', 'Area', 'Schedule'],
+      ...tableRows,
+    ];
+  
+    const blob = new Blob([table.map(row => row.join('\t')).join('\n')], {
+      type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    });
+  
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = 'document.docx';
+  
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  
+    toast.success('Документ успешно создан');
+  }
+
+  function createDocumentPDF() {
+    const doc = new jsPDF();
+    doc.text('Brigade  |  Area  |  Schedule', 20, 10);
+  
+    if (data && data.length > 0) {
+      data.forEach((element, index) => {
+        const row = `${element.title}  |  ${element.area.title}  |  ${element.schedule.title}`;
+        doc.text(row, 20, 10 + (index + 1) * 10);
+      });
+    }
+  
+    doc.save('document.pdf');
+  }
+
   return (
     <>
       <PageHead />
@@ -92,6 +156,15 @@ export function AreaPage() {
         <div className='areaPage__save__button'>
           <ButtonColor value="Скачать" handleClick={() => createDocument()} />
         </div>
+        <div className='areaPage__save__button'>
+          <ButtonColor value="Скачать Excel" handleClick={() => createDocumentExcel()} />
+        </div>
+        <div className='areaPage__save__button'>
+          <ButtonColor value="Скачать Word" handleClick={() => createDocumentWord()} />
+        </div>
+        <div className='areaPage__save__button'>
+          <ButtonColor value="Скачать PDF" handleClick={() => createDocumentPDF()} />
+        </div>
       </Content>
 
       <EditPopup open={showPopup} element={targetElement} closePopup={() => closePopup()} />
@@ -100,3 +173,4 @@ export function AreaPage() {
     </>
   );
 }
+

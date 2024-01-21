@@ -13,7 +13,6 @@ export function EditPopup(props) {
 
   useEffect(() => {
     if (props.element) {
-      console.log(props.element);
       setArea(props.element.area ? props.element.area.title : " ");
       setBrigade(props.element.title || " ");
       setSchedule(props.element.schedule ? props.element.schedule.title : " ");
