@@ -1,0 +1,45 @@
+.loginPage__content {
+  display: flex;
+  justify-content: center;
+}
+
+.loginPage__content__block {
+  border: .3vw solid #1976d2;
+  width: 20vw;
+  height: 20vw;
+  margin-top: 10vw;
+}
+
+.loginPage__content__block__newPassword {
+  margin: 1vw;
+  color: #1976d2;
+  cursor: pointer;
+  font-size: 1.5vw;
+}
+
+.loginPage {
+  width: 100vw;
+}
+
+.loginPage__content__block__title {
+  font-size: 3vw;
+  margin: 1vw;
+}
+
+.loginPage__content__block__inputs {
+  margin: 1vw;
+}
+
+.loginPage__content__block__buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.loginPage__content__block__buttons__login {
+  margin-left: 1vw;
+  margin-right: auto;
+}
+
+.loginPage__content__block__buttons__registration {
+  margin-right: 1vw;
+}

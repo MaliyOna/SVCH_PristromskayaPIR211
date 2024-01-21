@@ -1,0 +1,38 @@
+.registrationPage__content {
+  display: flex;
+  justify-content: center;
+}
+
+.registrationPage__content__block {
+  border: .3vw solid #1976d2;
+  width: 20vw;
+  height: 15vw;
+  margin-top: 10vw;
+}
+
+.registrationPage {
+  width: 100vw;
+}
+
+.registrationPage__content__block__title {
+  font-size: 3vw;
+  margin: 1vw;
+}
+
+.registrationPage__content__block__inputs {
+  margin: 1vw;
+}
+
+.registrationPage__content__block__buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.registrationPage__content__block__buttons__login {
+  margin-left: 1vw;
+  margin-right: auto;
+}
+
+.registrationPage__content__block__buttons__registration {
+  margin-right: 1vw;
+}

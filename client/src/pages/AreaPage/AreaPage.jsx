@@ -9,21 +9,27 @@ import { ButtonColor } from '../../shared/components/Button/Button';
 import SimpleSnackbar from '../../shared/components/SimpleSnackbar/SimpleSnackbar';
 import ActiveLastBreadcrumb from '../../shared/components/ActiveLastBreadcrumb/ActiveLastBreadcrumb';
 import { create, getAll } from '../../shared/api/allApi';
+import toast from 'react-hot-toast';
 
 export function AreaPage() {
   const [data, setData] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [targetElement, setTargetElement] = useState([]);
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [role, setRole] = useState("USER");
 
   useEffect(() => {
     loadData();
+    setRole(localStorage.getItem("role") || "USER");
   }, [])
 
   async function loadData() {
-    const data = await getAll();
-    console.log(data);
-    setData(data);
+    try {
+      const data = await getAll();
+      setData(data);
+    } catch (error) {
+      toast.error("Ошибка сервера")
+    }
   }
 
   function openPopup(element) {
@@ -37,19 +43,24 @@ export function AreaPage() {
   }
 
   async function addNewElement() {
-    const targetElement = {
-      id: 4,
-      area: "default",
-      brigade: "default",
-      schedule: "default"
+    try {
+      const targetElement = {
+        id: 4,
+        area: "default",
+        brigade: "default",
+        schedule: "default"
+      }
+
+      const data = await create(targetElement);
+      setTargetElement(data.brigade);
+
+      await loadData()
+      setShowPopup(true);
+      setOpenSnackbar(true);
+    } catch (error) {
+      toast.error("Ошибка сервера")
     }
 
-    const data = await create(targetElement);
-    setTargetElement(data.brigade);
-
-    await loadData()
-    setShowPopup(true);
-    setOpenSnackbar(true);
   }
 
   function createDocument() {
@@ -77,7 +88,7 @@ export function AreaPage() {
           )
         }
 
-        <ButtonColor value="Добавить" handleClick={() => addNewElement()} />
+        {role !== "USER" && <ButtonColor value="Добавить" handleClick={() => addNewElement()} />}
         <div className='areaPage__save__button'>
           <ButtonColor value="Скачать" handleClick={() => createDocument()} />
         </div>

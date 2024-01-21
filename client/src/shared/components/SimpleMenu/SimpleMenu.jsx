@@ -25,6 +25,7 @@ export function SimpleMenu(props) {
       <MenuItemNavigate navigate="/brigades" text="Бригады" />
       <MenuItemNavigate navigate="/schedule" text="График" />
       <MenuItemNavigate navigate="/area" text="Площади" />
+      <MenuItemNavigate navigate="/profile" text="Профиль" />
     </Menu>
   );
 }

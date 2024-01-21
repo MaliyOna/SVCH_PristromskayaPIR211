@@ -8,19 +8,26 @@ import { EditPopup } from '../../shared/components/EditPopup/EditPopup';
 import { ButtonColor } from '../../shared/components/Button/Button';
 import ActiveLastBreadcrumb from '../../shared/components/ActiveLastBreadcrumb/ActiveLastBreadcrumb';
 import { create, getAll } from '../../shared/api/allApi';
+import toast from 'react-hot-toast';
 
 export function SchedulePage() {
   const [data, setData] = useState();
   const [showPopup, setShowPopup] = useState(false);
   const [targetElement, setTargetElement] = useState([]);
+  const [role, setRole] = useState("USER");
 
   useEffect(() => {
     loadData();
+    setRole(localStorage.getItem("role") || "USER");
   }, [])
 
   async function loadData() {
-    const data = await getAll();
-    setData(data);
+    try {
+      const data = await getAll();
+      setData(data);
+    } catch (error) {
+      toast.error("Ошибка сервера")
+    }
   }
 
   function openPopup(element) {
@@ -42,11 +49,10 @@ export function SchedulePage() {
     }
     
     const data = await create(targetElement);
-    console.log(data);
-    // setTargetElement(data);
+    setTargetElement(data.brigade);
 
-    // await loadData()
-    // setShowPopup(true);
+    await loadData()
+    setShowPopup(true);
   }
 
   return (
@@ -60,7 +66,7 @@ export function SchedulePage() {
           <ScheduleBlock key={element._id} schedule={element.schedule.title} brigade={element.title} onClick={() => openPopup(element)} />
         )}
 
-        <ButtonColor value="Добавить" handleClick={() => addNewElement()} />
+        {role !== "USER" && <ButtonColor value="Добавить" handleClick={() => addNewElement()} />}
       </Content>
 
       <EditPopup open={showPopup} element={targetElement} closePopup={() => closePopup()} />
