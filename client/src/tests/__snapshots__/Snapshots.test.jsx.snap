@@ -1,0 +1,229 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders AreaBlock component correctly 1`] = `
+<div>
+  <div
+    class="areaBlock"
+  >
+    <div
+      class="areaBlock__area"
+    />
+    <div
+      class="areaBlock__brigade"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders AreaBlock component correctly 2`] = `
+<div>
+  <div
+    class="areaBlock"
+  >
+    <div
+      class="areaBlock__area"
+    />
+    <div
+      class="areaBlock__brigade"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders AreaBlock component correctly 3`] = `
+<div>
+  <div
+    class="brigadeBlock"
+  >
+    <div
+      class="brigadeBlock__brigade"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders BrigadeBlock component correctly 1`] = `
+<div>
+  <div
+    class="brigadeBlock"
+  >
+    <div
+      class="brigadeBlock__brigade"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders ButtonsGroup component correctly 1`] = `
+<div>
+  <div
+    class="MuiButtonGroup-root MuiButtonGroup-contained css-1d9bq45-MuiButtonGroup-root"
+    role="group"
+  >
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButtonGroup-firstButton css-sghohy-MuiButtonBase-root-MuiButton-root"
+      tabindex="0"
+      type="button"
+    >
+      Сохранить
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButtonGroup-middleButton css-sghohy-MuiButtonBase-root-MuiButton-root"
+      tabindex="0"
+      type="button"
+    >
+      Отмена
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+      />
+    </button>
+    <button
+      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButtonGroup-lastButton css-sghohy-MuiButtonBase-root-MuiButton-root"
+      tabindex="0"
+      type="button"
+    >
+      Удалить
+      <span
+        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+      />
+    </button>
+  </div>
+</div>
+`;
+
+exports[`renders CheckboxCheck component correctly 1`] = `
+<div>
+  <div
+    class="checkboxCheck"
+  >
+    <label
+      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-j204z7-MuiFormControlLabel-root"
+    >
+      <span
+        class="MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium PrivateSwitchBase-root MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium MuiCheckbox-root MuiCheckbox-colorPrimary MuiCheckbox-sizeMedium css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root"
+      >
+        <input
+          class="PrivateSwitchBase-input css-1m9pwf3"
+          data-indeterminate="false"
+          type="checkbox"
+        />
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+          data-testid="CheckBoxOutlineBlankIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+          />
+        </svg>
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+      >
+        Права админа
+      </span>
+    </label>
+  </div>
+</div>
+`;
+
+exports[`renders Content component correctly 1`] = `
+<div>
+  <div
+    class="content"
+  />
+</div>
+`;
+
+exports[`renders Footer component correctly 1`] = `
+<div>
+  <div
+    class="footer"
+  >
+    <div
+      class="footer__information"
+    >
+      Данный веб-сайт разработан для управления различными бригадами для уборки, а также указывает где и какие бриды должны убирать. Также видно время работы бригады.
+    </div>
+    <div
+      class="footer__contacts"
+    >
+      <div>
+        Email: uborka@gmail.com
+      </div>
+      <div>
+        Телефон: +375 22 222 22 22
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders Input component correctly 1`] = `
+<div>
+  <div
+    class="input"
+  >
+    <div
+      class="input__title"
+    />
+    <div
+      class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary css-bz5ng3-MuiInputBase-root-MuiInput-root"
+    >
+      <input
+        class="MuiInputBase-input MuiInput-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders PopupWindow component correctly 1`] = `<div />`;
+
+exports[`renders ScheduleBlock component correctly 1`] = `
+<div>
+  <div
+    class="scheduleBlock"
+  >
+    <div
+      class="scheduleBlock__brigade"
+    />
+    <div
+      class="scheduleBlock__schedule"
+    />
+  </div>
+</div>
+`;
+
+exports[`renders SimpleAvatar component correctly 1`] = `
+<div>
+  <button
+    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-av538e-MuiButtonBase-root-MuiIconButton-root"
+    tabindex="0"
+    type="button"
+  >
+    <div
+      class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+    >
+      <img
+        alt="Remy Sharp"
+        class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+        src="/images.jpg"
+      />
+    </div>
+    <span
+      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+    />
+  </button>
+</div>
+`;
